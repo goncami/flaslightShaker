@@ -1,13 +1,15 @@
 package com.example.flashlightshaker
-
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.flashlightshaker.ui.theme.FlashlightShakerTheme
@@ -18,8 +20,11 @@ class MainActivity : ComponentActivity() {
         setContent {
             FlashlightShakerTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    Greeting("Android")
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    Greeting()
                 }
             }
         }
@@ -27,17 +32,20 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-            text = "Hello $name!",
-            modifier = modifier
-    )
+fun Greeting() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(text = "Agita el dispositivo para encender/apagar el flash", style = MaterialTheme.typography.headlineMedium)
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun DefaultPreview() {
     FlashlightShakerTheme {
-        Greeting("Android")
+        Greeting()
     }
 }
