@@ -1,4 +1,6 @@
 package com.example.flashlightshaker
+import android.hardware.Sensor
+import android.hardware.SensorManager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,6 +17,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.flashlightshaker.ui.theme.FlashlightShakerTheme
 
 class MainActivity : ComponentActivity() {
+
+    private lateinit var sensorManager: SensorManager
+    private var accelerometerSensor: Sensor? = null
+    private lateinit var shakeDetector: ShakeDetector
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
