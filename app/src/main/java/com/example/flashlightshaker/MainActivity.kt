@@ -1,4 +1,5 @@
 package com.example.flashlightshaker
+import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorManager
 import android.os.Bundle
@@ -35,6 +36,28 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
+        // Inicializa el SensorManager
+        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        // Obtiene el sensor de acelerómetro
+        accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+
+        // Inicializa el ShakeDetector
+        shakeDetector = ShakeDetector {
+            // Aquí se implementará la lógica para encender/apagar el flash
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        accelerometerSensor?.also { accelerometer ->
+            sensorManager.registerListener(shakeDetector, accelerometer, SensorManager.SENSOR_DELAY_UI)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        sensorManager.unregisterListener(shakeDetector)
     }
 }
 
