@@ -11,7 +11,7 @@ class ShakeDetector(private val onShake: () -> Unit) : SensorEventListener {
     private var last_x: Float = 0.0f
     private var last_y: Float = 0.0f
     private var last_z: Float = 0.0f
-    private val shakeThreshold = 800 // Este valor determina la fuerza de la sacudida necesaria
+    private val shakeThreshold = 2500 // Este valor determina la fuerza de la sacudida necesaria
 
     override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
         // No es necesario para este caso
